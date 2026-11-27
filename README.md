@@ -4,10 +4,11 @@
 
 **Версия 0.5.1 · Windows x64 · macOS Intel и Apple Silicon**
 
-## Скачать ZIP
+## Скачать APK и ZIP
 
 | Система | Архив |
 | --- | --- |
+| Android 8.0+ · ARM64 | [Rust-Cam-0.4.1.apk](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/Rust-Cam-0.4.1.apk) |
 | Windows 10/11 x64 | [RustCam-Studio-Windows-x64.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/RustCam-Studio-Windows-x64.zip) |
 | macOS 11+ — Intel и Apple Silicon | [RustCam-Studio-macOS-universal.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/RustCam-Studio-macOS-universal.zip) |
 | Исходный код с ресурсами и лицензиями | [RustCam-Studio-source.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/RustCam-Studio-source.zip) |
