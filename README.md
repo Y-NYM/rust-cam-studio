@@ -1,22 +1,43 @@
 # Rust Cam Studio — Android, Windows и macOS
 
-Настольная камера и редактор фотографий с плёночными эффектами. Написано на Rust и egui.
+Камера и редактор фотографий с плёночными эффектами для Android, Windows и macOS. Написано на Rust и egui.
 
-**Версия 0.5.1 · Windows x64 · macOS Intel и Apple Silicon**
+**Android 0.6.1 · Windows/macOS 0.6.0 · обновления из GitHub Releases**
 
 ## Скачать APK и ZIP
 
 | Система | Архив |
 | --- | --- |
-| Android 8.0+ · ARM64 | [Rust-Cam-0.4.1.apk](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/Rust-Cam-0.4.1.apk) |
-| Windows 10/11 x64 | [RustCam-Studio-Windows-x64.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/RustCam-Studio-Windows-x64.zip) |
-| macOS 11+ — Intel и Apple Silicon | [RustCam-Studio-macOS-universal.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/RustCam-Studio-macOS-universal.zip) |
-| Исходный код с ресурсами и лицензиями | [RustCam-Studio-source.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/RustCam-Studio-source.zip) |
+| Android 8.0+ · ARM64 | [Rust-Cam-0.6.1.apk](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.6.1/Rust-Cam-0.6.1.apk) |
+| Windows 10/11 x64 | [RustCam-Studio-Windows-x64.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.6.0/RustCam-Studio-Windows-x64.zip) |
+| macOS 11+ — Intel и Apple Silicon | [RustCam-Studio-macOS-universal.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.6.0/RustCam-Studio-macOS-universal.zip) |
+| Исходный код с ресурсами и лицензиями | [RustCam-Android-0.6.1-source.zip](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.6.1/RustCam-Android-0.6.1-source.zip) |
 
-[Все релизы](https://github.com/Y-NYM/rust-cam-studio/releases) · [SHA-256 архивов](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/SHA256SUMS.txt)
+[Все релизы](https://github.com/Y-NYM/rust-cam-studio/releases) · [SHA-256 Android и актуальных исходников](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.6.1/SHA256SUMS.txt) · [SHA-256 Windows/macOS](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.6.0/SHA256SUMS.txt)
 
-Для готовых сборок установка Rust не нужна. Ссылки станут доступны после
-публикации релиза `v0.5.1` и загрузки трёх архивов с указанными именами.
+Для готовых сборок установка Rust не нужна. Полный проект с кодом, ресурсами
+и лицензиями находится в отдельном архиве исходников в Releases. В основной
+ветке GitHub пока размещена документация; автоматические архивы «Source code»
+содержат только файлы ветки и не заменяют полный архив проекта.
+
+## Исправления и обновления
+
+- Android 0.6.1 исправляет перевёрнутое превью фронтальной камеры: убрано
+  повторное преобразование поворота и зеркальности поверх матрицы Android.
+- Исправлены ORIGINAL, нулевая сила эффекта, неполное применение аксессуаров,
+  сохранение настроек рамки/аксессуара и повторная загрузка текстур при настройке.
+- Доработаны Prism и Star. В Android добавлены замер перед вспышкой, экранная
+  подсветка, тайм-аут снимка и защита при переключении камер.
+- Начиная с Android/desktop 0.6.0 приложение проверяет GitHub Releases при
+  запуске и работе в сети. «Обновить» запускает скачивание, «Позже» откладывает
+  предложение на сутки. Скачанный файл проверяется по размеру и SHA-256;
+  у APK также проверяются пакет, версия и ключ подписи.
+- Android продолжает начатую загрузку через системный DownloadManager и
+  открывает системный установщик. Windows/macOS скачивают проверенный ZIP;
+  после загрузки закройте приложение и установите новую сборку из архива.
+
+Версии 0.4.1/0.5.1 не содержат этого механизма: один раз установите новую
+сборку вручную. Установка APK тем же ключом поверх прежнего сохраняет данные.
 
 ## Возможности
 
@@ -114,12 +135,16 @@ JDK 21 выбирается через `JAVA_HOME`; версии Android SDK/NDK
 
 ## Состояние версии
 
-На Windows проверены поток HP Wide Vision HD Camera 1280×720, остановка
-и повторный запуск камеры, снимок через Enter, экспорт JPEG/PNG и запуск
-распакованного EXE. Прошли 25 обычных модульных тестов и отдельная
-проверка физической камеры. Доступность каждого устройства и драйвера
-не гарантируется. macOS-сборка проверена по структуре, двум архитектурам
-и локальной подписи; запуск на Mac пока не проверен.
+В версии 0.6.0 прошли 30 модульных тестов, 936 сочетаний профиля/аксессуара/силы
+эффекта и 156 вариантов Android GPU-рендера для 52 профилей. На Windows проверены
+настоящий GUI и экспорт JPEG/PNG. Физическая HP Wide Vision HD Camera 1280×720
+проверялась ранее в 0.5.1: остановка, повторный запуск и сохранение снимка.
+
+Android 0.6.1 проверен в эмуляторе: ориентация превью относительно JPEG обеих
+камер в квадратном, портретном и видеоформате; фото, MP4, скачивание из GitHub,
+напоминание и открытие установщика. Вспышка на физическом телефоне не проверена.
+macOS проверен по двум архитектурам, структуре и ad-hoc подписи; на настоящем
+Mac приложение пока не запускалось. Доступность каждого устройства не гарантируется.
 
 Настольная версия работает с фотографиями и кадрами камеры. Запись видео
 остаётся функцией Android. Рецепты эффектов приближённые; точное совпадение
@@ -136,8 +161,8 @@ MIT не меняет права на сторонние материалы. П�
 
 ## Android APK
 
-**[Скачать Rust-Cam-0.4.1.apk](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.5.1/Rust-Cam-0.4.1.apk)**
+**[Скачать Rust-Cam-0.6.1.apk](https://github.com/Y-NYM/rust-cam-studio/releases/download/v0.6.1/Rust-Cam-0.6.1.apk)**
 
-Android 8.0 и новее, устройства ARM64 (arm64-v8a). Версия APK — **0.4.1**, настольные сборки — **0.5.1**.
+Android 8.0 и новее, устройства ARM64 (arm64-v8a). Версия APK — **0.6.1** (versionCode 8), настольные сборки — **0.6.0**.
 
 В Android доступны фото и видеосъёмка, плёночные эффекты, рамки, двойная экспозиция и импорт фотографий. Скачайте APK на телефон, откройте его и подтвердите установку. Для съёмки приложению нужен доступ к камере; для записи звука в видео — к микрофону. Если уже установлена прежняя версия Rust Cam с той же подписью, устанавливайте обновление поверх неё, сохраняя данные приложения.
